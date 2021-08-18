@@ -1,4 +1,5 @@
 import redis
+"""Database initialization"""
 
 r = redis.Redis()
 id = 1
@@ -37,8 +38,12 @@ print(shirts)
 
 r.flushdb() # for development environment only
 
+pipe = r.pipeline()
+
 for s_id, shirt in shirts.items():
     for field, value in shirt.items():
-        r.hset(s_id, field, value)
+        pipe.hset(s_id, field, value)
+
+pipe.execute()
 
 r.close()
