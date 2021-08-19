@@ -1,5 +1,3 @@
-import time
-
 import redis
 import logging
 
@@ -30,7 +28,6 @@ def buy_items(r: redis.Redis, item_id) -> None:
             nleft: bytes = r.hget(item_id, "quantity")
             if nleft > b"0":
                 pipe.multi()
-                time.sleep(10)
                 pipe.hincrby(item_id, "quantity", -1)
                 pipe.hincrby(item_id, "n_purchased", 1)
                 pipe.execute()

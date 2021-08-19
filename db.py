@@ -22,7 +22,7 @@ product = [{
     "color": "white",
     "price": 35.99,
     "style": "fitted",
-    "quantity": 3,
+    "quantity": 1,
     "n_purchased": 0,
     }
 ]
